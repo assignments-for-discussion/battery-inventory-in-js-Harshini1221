@@ -7,7 +7,22 @@ function countBatteriesByHealth(presentCapacities) {
     failed: 0
   };
 }
+for (let i = 0; i < presentCapacities.length; i++) {
+    let SoH = (presentCapacities[i] / 120) * 100;
 
+    if (SoH > 80) {
+      healthy++;
+    } else if (SoH <= 80 && SoH >= 62) {
+      exchange++;
+    } else {
+      failed++;
+    }
+  }
+  
+  return [healthy, exchange, failed];
+} 
+
+module.exports = classifyBatteries;
 function testBucketingByHealth() {
   console.log('Counting batteries by SoH...');
   const presentCapacities = [113, 116, 80, 95, 92, 70];
