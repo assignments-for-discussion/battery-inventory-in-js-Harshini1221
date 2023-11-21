@@ -19,3 +19,14 @@ function testBucketingByHealth() {
 }
 
 testBucketingByHealth();
+for (let i = 0; i < presentCapacities.length; i++) {
+  let SoH = (presentCapacities[i] / 120) * 100;
+
+  if (SoH > 80) {
+    healthy;
+  } else if (SoH <= 80 && SoH >= 62) {
+    exchange;
+  } else {
+    failed;
+  }
+}
