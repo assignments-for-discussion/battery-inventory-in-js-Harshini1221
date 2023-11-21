@@ -1,32 +1,40 @@
 const assert = require('assert');
 
 function countBatteriesByHealth(presentCapacities) {
-  return {
-    healthy: 0,
-    exchange: 0,
-    failed: 0
+  let healthy = 0,
+  let exchange= 0,
+  let failed = 0
+
+for (let i = 0; i < presentCapacities.length; i++) {
+    const ratedCapacity = 120;
+    const presentcapacity =  presentCapacitie[i];
+    const stateOfHealth = (presentcapacity / ratedCapacity) * 100;
+
+    if (stateOfHealth > 80 && stateOfHealth <= 100) {
+      healthy++;
+    } else if (stateOfHealth > 62 && stateOfHealth <= 80) {
+      exchange++;
+    } else {
+      failed++;
+    }
+  }
+return {
+    healthy: healthy,
+    exchange: exchange,
+    failed: failed
   };
 }
-
 function testBucketingByHealth() {
   console.log('Counting batteries by SoH...');
   const presentCapacities = [113, 116, 80, 95, 92, 70];
   counts = countBatteriesByHealth(presentCapacities);
-  assert(counts["healthy"] == 2);
-  assert(counts["exchange"] == 3);
-  assert(counts["failed"] == 1);
-  console.log("Done counting :)");
+  console.assert(result.healthy === 3, 'Incorrect count of healthy batteries');
+  console.assert(result.exchange === 2, 'Incorrect count of exchange batteries');
+  console.assert(result.failed === 1, 'Incorrect count of failed batteries');
+
+  console.log('All tests passed!');
+}
+
 }
 
 testBucketingByHealth();
-for (let i = 0; i < presentCapacities.length; i++) {
-  let SoH = (presentCapacities[i] / 120) * 100;
-
-  if (SoH > 80) {
-    healthy;
-  } else if (SoH <= 80 && SoH >= 62) {
-    exchange;
-  } else {
-    failed;
-  }
-}
